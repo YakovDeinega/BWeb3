@@ -7,8 +7,8 @@ class DatabaseConnector {
     private $m_dbConnection = null;
 
     public function __construct() {
-        $host = '212.192.134.20';
-        $port = '22';
+        $host = 'localhost';
+        $port = '3306';
         $db = 'u54369';
         $user = 'u54369';
         $password = '9133627';
