@@ -1,0 +1,25 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    color: #fff;
+    font-size: 24px;
+    background-color: lightgreen;
+}
+header{    
+    letter-spacing: 3px;
+}
+h1{
+    font-size: 28px;
+}
+
+.kontent{
+    background: cyan;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+.form{
+    background: cyan;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+

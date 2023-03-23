@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            The third task!
+        </title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta name="viewport" content="width=device-width initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="container m-auto">
+            <header class="p-1 text-center">
+                <h1 class="mt-0 pt-3 pt-lg-5">Третье задание по Web-development</h1>
+            </header>
+        </div>
+        <div class="container">
+        <div class="d-flex flex-column-reverse flex-sm-column">
+        <div class="form my-2 text-center pb-2">
+        <form action="/" method="POST" id="myform">
+            <h2>Форма HTML</h2>
+            <label>
+                Введите имя пользователя:<br />
+                <input name="username"
+                required="required"
+                type="text"
+                placeholder="Имя пользователя:">
+            </label> <br />
+
+            <label>
+                Введите имя пользователя:<br />
+                <input name="name"
+                       required="required"
+                       type="text"
+                       placeholder="ФИО:">
+            </label> <br />
+
+            <label>
+                Текстовое поле email:<br />
+                <input name="email"
+                  required="required"
+                  type="email"
+                  placeholder="Введите вашу электронную почту" />
+            </label><br />
+            <label>
+                Введите дату рождения:<br />
+                <input name="birthday"
+                 value="2000-01-01"
+                 required="required"
+                 type="date">
+            </label><br />
+            Укажите пол:<br />
+            <label>
+                <input type="radio" name="gender" value="male" checked/> Мужской </label>
+            <label>
+                <input type="radio" name="gender" value="female" /> Женский </label> <br />
+
+            <label>
+                Выберите желаемую сверхспособность: <br />
+                <select name="superpower">
+                    <option value="immortality" selected="selected">Бессмертие</option>
+                    <option value="noclipping">Режим призрака</option>
+                    <option value="levitation">Левитация</option>
+                </select>
+            </label> <br />
+            <label>
+                Напишите свою историю: <br />
+                <textarea name="biography" placeholder="Мы должны узнать больше про нашего героя" required="required"></textarea>
+            </label> <br />
+            <label>
+                Чекбокс: <br />
+                <input type="checkbox" name="chtck" required="required"> С контрактом ознакомлен(а)
+            </label> <br />
+            <input type="submit" value="Отправить"/>
+            <div id="status"></div>
+        </form>
+        </div>
+        </div>
+        </div>
+        <footer class="footer pl-5 pt-3 mw-100 mt-2">
+            <p>
+                Yakov Deinega © 2023
+            </p>
+        </footer>
+
+    <script>
+
+        const postUser = () => {
+            return (user) => {
+                const result = fetch(`http://u54369.kubsu-dev.ru/aweb3/api/user.php`, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(user),
+                })
+            }
+        }
+
+
+        const formEl = document.querySelector('#myform')
+        formEl.addEventListener('submit', (event) => {
+            event.preventDefault()
+
+            const data = new FormData(event.target)
+            const user = Object.fromEntries(data.entries())
+
+            const userPoster = postUser()
+
+            const statusEl = document.querySelector('#status')
+            userPoster(user).then((res) => {
+                statusEl.innerText = 'Успешно отправлено!'
+            }).catch((err) => {
+                statusEl.innerText = 'Произошла ошибка!'
+            })
+        })
+
+    </script>
+    </body>
+</html>
